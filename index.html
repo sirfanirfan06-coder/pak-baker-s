@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pak Baker's | Fresh Bakery in Lahore</title>
+<style>
+:root{--cream:#fff8ef;--pink:#e9a9b5;--deep:#6f3d47;--brown:#7b5548;--white:#fff;--soft:#f7e5e2;--text:#3d3030}
+*{box-sizing:border-box}body{margin:0;font-family:Arial, sans-serif;background:var(--cream);color:var(--text)}
+header{position:sticky;top:0;z-index:10;background:rgba(255,248,239,.96);border-bottom:1px solid #efd9d2}
+.nav{max-width:1100px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:25px;font-weight:800;color:var(--deep)}.logo small{display:block;font-size:11px;letter-spacing:2px;color:var(--brown)}
+nav a{margin-left:18px;text-decoration:none;color:var(--deep);font-weight:600}
+.cartbtn{border:0;background:var(--deep);color:white;padding:10px 15px;border-radius:22px;cursor:pointer}
+.hero{max-width:1100px;margin:auto;padding:65px 20px 45px;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
+.hero h1{font-size:54px;margin:0 0 15px;color:var(--deep);line-height:1.05}.hero p{font-size:18px;line-height:1.7}
+.btn{display:inline-block;background:var(--deep);color:#fff;padding:13px 20px;border-radius:28px;text-decoration:none;border:0;cursor:pointer;font-weight:700}
+.hero-art{min-height:320px;border-radius:35px;background:linear-gradient(145deg,#f5d2d2,#fff1df);display:flex;align-items:center;justify-content:center;font-size:100px;box-shadow:0 18px 45px #6f3d471c}
+section{max-width:1100px;margin:auto;padding:45px 20px}.title{text-align:center;color:var(--deep);font-size:32px;margin-bottom:28px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:white;border-radius:22px;overflow:hidden;box-shadow:0 10px 28px #6f3d4712;border:1px solid #f1dfda}
+.pic{height:180px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:72px}
+.cardbody{padding:20px}.card h3{margin:0;color:var(--deep);font-size:22px}.card p{line-height:1.5;color:#665}.price{font-weight:800;color:var(--brown);margin:12px 0}
+.qty{display:flex;gap:8px;align-items:center;margin:12px 0}.qty input{width:90px;padding:10px;border:1px solid #dcc8c3;border-radius:10px}
+.add{width:100%;padding:11px;border:0;border-radius:13px;background:var(--pink);color:#4e3036;font-weight:800;cursor:pointer}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.info div{background:white;padding:22px;border-radius:18px;text-align:center;border:1px solid #f1dfda}
+footer{background:var(--deep);color:white;text-align:center;padding:35px 20px;margin-top:30px}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:20;align-items:center;justify-content:center;padding:18px}
+.modalbox{background:white;max-width:620px;width:100%;max-height:92vh;overflow:auto;border-radius:24px;padding:24px}
+.close{float:right;border:0;background:#eee;border-radius:50%;width:34px;height:34px;cursor:pointer}
+.row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee}.empty{text-align:center;padding:25px;color:#777}
+form input,form textarea{width:100%;padding:12px;margin:7px 0 12px;border:1px solid #d9c7c3;border-radius:10px;font:inherit}
+.total{font-size:20px;font-weight:800;color:var(--deep);margin:18px 0}
+.notice{background:#fff2f0;border-radius:14px;padding:12px;font-size:13px;margin:12px 0}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:35px}.hero h1{font-size:42px}.products{grid-template-columns:1fr}.info{grid-template-columns:1fr}nav a{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<div class="logo">Pak Baker's<small>FRESH • HOMEMADE • LAHORE</small></div>
+<nav><a href="#home">Home</a><a href="#products">Products</a><a href="#about">About</a><a href="#reviews">Reviews</a><button class="cartbtn" onclick="openCart()">Cart (<span id="count">0</span>)</button></nav>
+</div></header>
+
+<main>
+<section class="hero" id="home">
+<div><div style="color:var(--brown);font-weight:700">خوش آمدید • Welcome</div>
+<h1>Freshly baked, made with love.</h1>
+<p>Pak Baker's brings delicious bakery favourites to your doorstep in Lahore. Select your quantity, place your order and pay by Cash on Delivery or advance payment.</p>
+<a class="btn" href="#products">Order Now</a></div>
+<div class="hero-art">🥨 🍪 🧁</div>
+</section>
+
+<section id="products"><h2 class="title">Our Bakery</h2><div class="products">
+<div class="card"><div class="pic">🥖</div><div class="cardbody"><h3>Cake Rusk</h3><p>Crunchy, tea-time favourite with a fresh homemade taste.</p><div class="price">Price set by seller</div><div class="qty"><label>Kg:</label><input id="q1" type="number" min=".5" step=".5" value=".5"></div><button class="add" onclick="add('Cake Rusk','q1')">Add to Cart</button></div></div>
+<div class="card"><div class="pic">🍪</div><div class="cardbody"><h3>Nan Khatai</h3><p>Traditional, soft and crumbly bakery treat.</p><div class="price">Price set by seller</div><div class="qty"><label>Kg:</label><input id="q2" type="number" min=".5" step=".5" value=".5"></div><button class="add" onclick="add('Nan Khatai','q2')">Add to Cart</button></div></div>
+<div class="card"><div class="pic">🍪</div><div class="cardbody"><h3>Biscuits</h3><p>Fresh biscuits prepared for your everyday tea time.</p><div class="price">Price set by seller</div><div class="qty"><label>Kg:</label><input id="q3" type="number" min=".5" step=".5" value=".5"></div><button class="add" onclick="add('Biscuits','q3')">Add to Cart</button></div></div>
+</div>
+<div class="notice">Minimum quantity is ½ kg. Flavours and varieties can be discussed by contacting us.</div>
+</section>
+
+<section id="about"><h2 class="title">Why Pak Baker's?</h2><div class="info">
+<div>🧁<h3>Fresh Bakery</h3><p>Prepared with care and a homemade feel.</p></div>
+<div>🚚<h3>Lahore Delivery</h3><p>Delivery around Mughalpura, up to approximately 15 km in selected areas.</p></div>
+<div>💬<h3>Easy Ordering</h3><p>Order online and receive your order details on WhatsApp.</p></div>
+</div></section>
+
+<section id="reviews"><h2 class="title">Customer Reviews</h2><div class="info">
+<div>⭐️⭐️⭐️⭐️⭐️<p>Your review can appear here.</p></div>
+<div>⭐️⭐️⭐️⭐️⭐️<p>We'd love to hear from our customers.</p></div>
+<div>⭐️⭐️⭐️⭐️⭐️<p>Fresh taste, happy customers.</p></div>
+</div></section>
+
+<section id="contact"><h2 class="title">Contact Us</h2><div class="info">
+<div><h3>WhatsApp</h3><p>03055727273</p></div><div><h3>Service Area</h3><p>Mughalpura and selected areas within about 15 km, Lahore.</p></div><div><h3>Orders</h3><p>Orders accepted until 8:00 PM. Orders after 8 PM are considered for the next day.</p></div>
+</div></section>
+</main>
+
+<footer>© 2026 Pak Baker's • Lahore, Pakistan<br><span style="opacity:.8">Fresh bakery, delivered with care.</span></footer>
+
+<div class="modal" id="cartModal"><div class="modalbox"><button class="close" onclick="closeCart()">×</button><h2 style="color:var(--deep)">Your Order</h2><div id="items"></div>
+<div class="notice">Delivery charges are decided by the seller according to distance. Final total will be confirmed on WhatsApp.</div>
+<form onsubmit="sendOrder(event)">
+<input id="name" required placeholder="Customer Name">
+<input id="phone" required placeholder="Phone Number">
+<textarea id="address" required placeholder="Delivery Address"></textarea>
+<select id="payment" style="width:100%;padding:12px;border:1px solid #d9c7c3;border-radius:10px;margin:7px 0 12px"><option>Cash on Delivery</option><option>Advance Payment</option></select>
+<div class="total">Order total: To be confirmed</div>
+<button class="btn" style="width:100%" type="submit">Send Order on WhatsApp</button>
+</form></div></div>
+
+<script>
+let cart=[];
+function add(name,id){let q=parseFloat(document.getElementById(id).value);if(!q||q<.5){alert('Minimum quantity is 0.5 kg');return}cart.push({name,q});render();alert(name+' added to cart');}
+function render(){document.getElementById('count').textContent=cart.length;let el=document.getElementById('items');if(!cart.length){el.innerHTML='<div class="empty">Your cart is empty.</div>';return}el.innerHTML=cart.map((x,i)=>`<div class="row"><span>${x.name}</span><b>${x.q} kg <button onclick="removeItem(${i})" style="border:0;background:none;color:#a44;cursor:pointer">✕</button></b></div>`).join('')}
+function removeItem(i){cart.splice(i,1);render()}
+function openCart(){document.getElementById('cartModal').style.display='flex';render()}
+function closeCart(){document.getElementById('cartModal').style.display='none'}
+function sendOrder(e){e.preventDefault();if(!cart.length){alert('Please add a product first.');return}
+let order=cart.map(x=>`• ${x.name}: ${x.q} kg`).join('%0A');
+let msg=`*Pak Baker's Order*%0A%0AOrder Number: PB-${Date.now().toString().slice(-6)}%0A%0A${order}%0A%0A*Customer:* ${encodeURIComponent(document.getElementById('name').value)}%0A*Phone:* ${encodeURIComponent(document.getElementById('phone').value)}%0A*Address:* ${encodeURIComponent(document.getElementById('address').value)}%0A*Payment:* ${encodeURIComponent(document.getElementById('payment').value)}%0A%0ADelivery charge: To be confirmed by seller according to distance.%0ATotal amount: To be confirmed.%0A%0AOrders after 8 PM are considered for the next day.`;
+window.open('https://wa.me/923055727273?text='+msg,'_blank');
+}
+render();
+</script>
+</body>
+</html>
